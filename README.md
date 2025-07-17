@@ -13,7 +13,7 @@ The second dataset is a curated collection of movies with various metadata attri
 
 <img width="1375" height="631" alt="Screenshot 2025-07-17 090217" src="https://github.com/user-attachments/assets/cbce8d91-7211-4b79-96de-494b6d64f2e6" />
 
-## I took the follwing steps for my Python script
+## I took following steps for my Python script
 ### Data Loading 
 Import Dataset: Loaded `mymoviedb.csv` using `pd.read_csv()`
 
@@ -29,7 +29,7 @@ Duplicate Detection: Identified and reviewed duplicate rows using `.duplicated()
 ### Data Visualization 
 Seaborn Plot: Created a statistical visualization using `seaborn` and `matplotib` to answer some key business questions.
 
-## I took follwing steps for my Tableau dashboard
+## I took following steps for my Tableau dashboard
 1. Loaded and cleaned the Netflix dataset in Tableau.
 2. Created visuals: map by country, bar chart of ratings, donut chart by type, genre bar chart, area chart by year.
 3. Added filters for title and type.
