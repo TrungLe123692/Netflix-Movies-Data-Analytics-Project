@@ -43,13 +43,13 @@ Seaborn Plot: Created a statistical visualization using `seaborn` and `matplotib
 5. Which year has the most filmmed movies?
 
 ## Business Impacts 
-`Content Strategy Optimization:` Identifies top-performing genres and countries to guide future content investments and licensing decisions.
+Content Strategy Optimization: Identifies top-performing genres and countries to guide future content investments and licensing decisions.
 
-`Targeted Marketing Insights:` Helps tailor marketing campaigns by understanding viewer preferences by region, genre, and rating.
+Targeted Marketing Insights: Helps tailor marketing campaigns by understanding viewer preferences by region, genre, and rating.
 
-`Catalog Composition Analysis:` Highlights the balance between movies and TV shows, supporting decisions on content mix and user engagement strategies.
+Catalog Composition Analysis: Highlights the balance between movies and TV shows, supporting decisions on content mix and user engagement strategies.
 
-`Release Trend Forecasting:` Reveals historical content release trends, enabling better planning for seasonal releases or content drops.
+Release Trend Forecasting: Reveals historical content release trends, enabling better planning for seasonal releases or content drops.
 
 
 
