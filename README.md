@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Overview
+## 1. Project Overview
 
 This project analyzes over **9,000+ Netflix titles** using Python and Tableau to extract insights into genre distribution, popularity trends, rating behavior, and content evolution over time.
 
@@ -35,13 +35,6 @@ Netflix aims to optimize its global content strategy using insights from histori
 - Which content types dominate the platform?
 - Which year had the highest number of releases?
 - What countries produce the most Netflix content?
-
-### 2.2. Business Impact
-
-- **Content Strategy Optimization** – Identify top genres and prolific countries for future investment  
-- **Marketing Campaign Targeting** – Segment content by type and region for more precise advertising  
-- **Catalog Composition Insights** – Understand balance between movies vs. TV shows  
-- **Release Trend Forecasting** – Plan seasonal or regional content drops using past patterns
 
 ---
 
@@ -85,30 +78,68 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 
 ---
 
-## 4. Python Analysis Workflow
+## 4. Data Analysis & Modeling Techniques
 
-### 4.1. 🧹 Data Loading & Cleaning
+The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, **seaborn**, and **scikit-learn** to uncover trends and build predictive insights.
 
-- Loaded CSVs using `pd.read_csv()`  
-- Inspected data with `.info()`, `.head()`, `.shape()`  
-- Used `.describe()` for summary statistics  
-- Checked for duplicates using `.duplicated()`  
-- Cleaned genres, countries, and nulls for consistency
+---
 
-### 4.2. 📊 Exploratory Data Analysis (EDA)
+## 4. Data Analysis & Modeling Techniques
 
-- Used `.value_counts()` to assess genre and rating frequency  
-- Created bar charts, donut plots, and heatmaps using `matplotlib` and `seaborn`  
-- Compared vote counts and IMDb scores to identify top/low performers  
-- Analyzed year-wise release trends
+The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, **seaborn**, and **scikit-learn** to uncover trends and build predictive insights.
 
-### 4.3. 📈 Sample Visualizations
+---
 
-- **Genre Frequency Plot**  
-- **Vote Count Distribution**  
-- **Top & Lowest IMDb Scores by Genre**  
-- **Yearly Content Releases**  
-- **Content Type Breakdown**
+### 4.1 Exploratory Data Analysis (EDA)
+
+- **4.1.1 Univariate Analysis:**
+  - Explored the distribution of key variables using `value_counts()` and `countplot()`:
+    - Content **Type** (Movies vs TV Shows)
+    - **Rating** categories (TV-MA, PG, etc.)
+    - Top contributing **Countries**
+
+- **4.1.2 Time Series Analysis:**
+  - Extracted `Year Added` and `Month Added` from `Date Added`
+  - Created **line charts** to visualize content uploads over time and detect growth patterns
+
+- **4.1.3 Genre Insights:**
+  - Split multi-genre entries using `.str.split(', ')` and normalized them with `.explode()`
+  - Used **bar plots** to display top genres and frequency of occurrence
+
+- **4.1.4 Duration Patterns:**
+  - Extracted numeric runtime values from the `Duration` column using regex
+  - Visualized content length using **boxplots** and **histograms**
+
+- **4.1.5 Geographic Distribution:**
+  - Identified top 10 content-producing countries with `value_counts()`
+  - Used **bar charts** to show country-level contribution to the Netflix library
+
+---
+
+### 4.2 Model Training & Evaluation (scikit-learn)
+
+- **4.2.1 Data Splitting:**
+  - Split dataset using `train_test_split()` with an 80/20 ratio
+  - Applied `random_state` to ensure reproducibility of results
+
+- **4.2.2 Model Development:**
+  - Trained two regression models:
+    - **Linear Regression** as a simple baseline
+    - **Random Forest Regressor** with 100 estimators for ensemble-based prediction
+  - Used one-hot encoded genre features and numeric columns as input variables
+
+- **4.2.3 Prediction & Evaluation:**
+  - Made predictions on the test set using `.predict()`
+  - Evaluated model performance using:
+    - **Mean Squared Error (MSE)**
+    - **Mean Absolute Error (MAE)**
+    - **R² Score (coefficient of determination)**
+
+- **4.2.4 Performance Visualization:**
+  - Used `seaborn.scatterplot()` to compare predicted vs actual values
+  - Evaluated model accuracy based on closeness to the 45-degree diagonal line
+
+> ✅ This combined approach of exploratory analysis and predictive modeling provided both descriptive insights and forward-looking intelligence into Netflix’s content trends.
 
 ---
 
@@ -134,24 +165,6 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 
 ---
 
-## 6. Key Questions Answered
-
-- 🎬 **Most Frequent Genre**: What is the most popular genre in Netflix’s catalog?  
-- 🌍 **Top Country Producers**: Which countries have the highest number of movies/shows?  
-- 🔝 **Top IMDb Vote**: Which titles have the highest user vote and ratings?  
-- 📉 **Lowest Popularity Titles**: What genres are associated with least popular content?  
-- 📆 **Most Productive Year**: Which year had the most Netflix releases?
-
----
-
-## 7. Business Outcomes
-
-- Data-driven support for genre acquisition and production planning  
-- Strategic regional investments based on historical country trends  
-- Viewer engagement insights to personalize recommendations  
-- Improved scheduling for seasonal content drops
-
----
 
 ## 📈 View the Interactive Dashboard
 
