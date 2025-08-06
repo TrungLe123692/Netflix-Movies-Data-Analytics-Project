@@ -1,10 +1,5 @@
 #                                               🎬 Netflix Movies Data Analytics Project  
-![Language](https://img.shields.io/badge/Language-Python-red)  
-![Visualization](https://img.shields.io/badge/Visualization-Tableau-purple)  
-![Status](https://img.shields.io/badge/Project-Completed-brightgreen)  
-![Data](https://img.shields.io/badge/Data-Netflix-blue)
-
-> A data-driven analytics and visualization project using Python and Tableau to uncover viewer behavior, content trends, and platform strategy for Netflix.
+![Language](https://img.shields.io/badge/Language-Python-blue) ![Visualization](https://img.shields.io/badge/Visualization-Tableau-red) ![Status](https://img.shields.io/badge/Project-Completed-yellow) ![Data](https://img.shields.io/badge/Data-Netflix-orange)
 
 ---
 
@@ -42,7 +37,7 @@ Netflix aims to optimize its global content strategy using insights from histori
 
 The project combines two datasets with a total of **12+ columns** and **8,800+ rows**, containing metadata about Netflix content and IMDb-related movie attributes.
 
-### 🗃️ Netflix Content Metadata
+🗃️ [Netflix Content Metadata](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/netflix_titles%20(1).csv)
 
 | Column        | Description                                  | Data Type |
 |---------------|----------------------------------------------|-----------|
@@ -59,7 +54,7 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 | listed_in     | Genres/categories                           | VARCHAR   |
 | description   | Short summary                                | TEXT      |
 
-### 🎞️ Movie Metadata with Ratings
+🎞️ [Movie Metadata with Ratings](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/mymoviedb.csv)
 
 | Column     | Description                             | Data Type |
 |------------|-----------------------------------------|-----------|
@@ -142,8 +137,179 @@ The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, *
 > ✅ This combined approach of exploratory analysis and predictive modeling provided both descriptive insights and forward-looking intelligence into Netflix’s content trends.
 
 ---
+## 5. Python Codes
 
-## 5. Tableau Dashboard Design
+### 5.1 Data Cleaning
+
+> ✅ This section outlines the end-to-end steps to prepare the Netflix dataset for analysis using Python. These cleaning steps ensure consistent, reliable data for deeper exploration and visualization.
+
+ - **5.1.1 Convert 'Date Added' to datetime**
+
+   - Enables time-based analysis, such as content trends by year and month.
+
+```python
+df['Date Added'] = pd.to_datetime(df['Date Added'])
+```
+
+- **5.1.2 Extract 'Year Added' and 'Month Added**
+
+   - Adds two new columns for year and month to support trend analysis.
+
+```python
+df['Year Added'] = df['Date Added'].dt.year
+df['Month Added'] = df['Date Added'].dt.month
+```
+
+- **5.1.3 Drop duplicates and irrelevant columns**
+
+  - Removes noise and unnecessary fields like `Show Id` and `Description`.
+
+```python
+df.drop_duplicates(inplace=True)
+df.drop(['Show Id', 'Description'], axis=1, inplace=True)
+```
+
+- **5.1.4 Drop missing values**
+
+  - Removes rows with null values to ensure clean statistical results.
+
+```python
+df.dropna(inplace=True)
+```
+
+- **5.1.5 Normalize 'Genre' values**
+
+   - Splits multiple genres and explodes them into individual rows for accurate grouping.
+
+```python
+df['Genre'] = df['Genre'].str.split(', ')
+df = df.explode('Genre')
+```
+
+- **5.1.5 Extract duration in minutes**
+
+   - Extracts numeric values from the `Duration` column to allow quantitative comparisons.
+
+```python
+df['Minutes'] = df['Duration'].str.extract('(\d+)').astype(float)
+```
+
+---
+
+### 5.2 Modeling
+
+> ✅ This section covers the machine learning pipeline built to predict target values (e.g., rating, duration, or popularity) based on structured Netflix data. It includes preprocessing, model training, and evaluation.
+
+- **5.2.1 Import modeling libraries**
+
+   - Essential libraries from `scikit-learn` and others are imported to support regression modeling, evaluation, and visualization.
+
+```python
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import pandas as pd
+```
+
+- **5.2.2 Preprocess data for modeling**
+
+   - One-hot encode the `'Genre'` column  
+   - Drop irrelevant or non-numeric columns like `'Title'` and `'Description'`  
+   - Handle missing values by removing incomplete rows
+
+```python
+df_model = df.copy()
+
+# One-hot encoding
+df_model = pd.get_dummies(df_model, columns=['Genre'], drop_first=True)
+
+# Drop non-numeric fields
+df_model = df_model.drop(['Title', 'Description'], axis=1, errors='ignore')
+
+# Drop rows with missing data
+df_model = df_model.dropna()
+
+df_model.head()
+```
+
+
+- **5.2.3 Split dataset into training and testing sets**
+
+   - Splits the preprocessed dataset into 80% training and 20% testing data.
+
+```python
+from sklearn.model_selection import train_test_split
+
+X = df_model.drop('TargetColumn', axis=1)  # Replace 'TargetColumn' with your actual target
+y = df_model['TargetColumn']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print(f"Training set size: {X_train.shape[0]} samples")
+print(f"Testing set size: {X_test.shape[0]} samples")
+```
+
+- **5.2.4 Train and evaluate Linear Regression model**
+
+   - Fits a simple linear model and evaluates its performance using common regression metrics.
+
+```python
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+
+y_pred_lr = lr_model.predict(X_test)
+
+# Evaluation
+mse_lr = mean_squared_error(y_test, y_pred_lr)
+mae_lr = mean_absolute_error(y_test, y_pred_lr)
+r2_lr = r2_score(y_test, y_pred_lr)
+
+print(f"Linear Regression MSE: {mse_lr:.2f}")
+print(f"Linear Regression MAE: {mae_lr:.2f}")
+print(f"Linear Regression R²: {r2_lr:.2f}")
+```
+
+- **5.2.5 Train and evaluate Random Forest model**
+
+   - Fits a more robust ensemble model and compares performance against the linear baseline.
+
+```python
+rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+
+y_pred_rf = rf_model.predict(X_test)
+
+# Evaluation
+mse_rf = mean_squared_error(y_test, y_pred_rf)
+mae_rf = mean_absolute_error(y_test, y_pred_rf)
+r2_rf = r2_score(y_test, y_pred_rf)
+
+print(f"Random Forest MSE: {mse_rf:.2f}")
+print(f"Random Forest MAE: {mae_rf:.2f}")
+print(f"Random Forest R²: {r2_rf:.2f}")
+```
+
+- **5.2.6 Compare model performance**
+
+   - Visually compare predictions vs actual values or display a summary of metrics.
+
+```python
+plt.figure(figsize=(8, 5))
+sns.scatterplot(x=y_test, y=y_pred_rf)
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values (RF)')
+plt.title('Random Forest Predictions vs Actual')
+plt.show()
+```
+
+> ✅ Tip: Replace `'TargetColumn'` with your actual prediction target, such as `'Minutes'`, `'Rating Score'`, or a derived metric.
+
+## 6. Tableau Dashboard Design
 
 - **Genre Popularity (Bar Chart):**  
   Visualizes the most common genres on Netflix.
@@ -165,17 +331,8 @@ The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, *
 
 ---
 
-
-## 📈 View the Interactive Dashboard
-
-[![View in Tableau Public](https://img.shields.io/badge/Tableau-Dashboard-blue?logo=tableau)](https://public.tableau.com/app/profile/your_username_here/viz/NetflixDashboard/Overview)  
-👉 **[Click here to explore the live Tableau dashboard](https://public.tableau.com/app/profile/your_username_here/viz/NetflixDashboard/Overview)**  
-This dashboard visualizes genre trends, rating distributions, country output, and time-based content patterns for Netflix’s global library.
-
----
-
 ## 📂 Resources
 
-- Python Notebook: [`Python_Netflix_Movie_Data_Analytics_Project.ipynb`](./Python_Netflix_Movie_Data_Analytics_Project.ipynb)  
-- Tableau Dashboard: [Tableau Public Link](https://public.tableau.com/app/profile/your_username_here/viz/NetflixDashboard/Overview)  
+- Python Notebook: [Python_Netflix_Movie_Data_Analytics_Project.ipynb](./Python_Netflix_Movie_Data_Analytics_Project.ipynb)  
+- Tableau Dashboard: [Tableau Public Link](https://public.tableau.com/app/profile/trung.le6260/viz/NetflixMoviesDataAnalytics/Summary)
 - Dataset Source: [Kaggle Netflix Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows)
