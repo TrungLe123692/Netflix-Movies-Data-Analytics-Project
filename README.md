@@ -79,12 +79,6 @@ The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, *
 
 ---
 
-## 4. Data Analysis & Modeling Techniques
-
-The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, **seaborn**, and **scikit-learn** to uncover trends and build predictive insights.
-
----
-
 ### 4.1 Exploratory Data Analysis (EDA)
 
 - **4.1.1 Univariate Analysis:**
