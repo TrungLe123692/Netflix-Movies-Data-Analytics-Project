@@ -1,0 +1,32 @@
+netflix-data-analytics/
+│
+├── data/
+│   ├── netflix_titles.csv
+│   └── netflix_movies_imdb.csv
+│
+├── notebooks/
+│   └── Netflix_Data_Analytics.ipynb
+│
+├── scripts/
+│   └── data_cleaning_and_modeling.py
+│
+├── visuals/
+│   ├── genre_popularity.png
+│   ├── rating_distribution.png
+│   ├── content_type_donut.png
+│   ├── country_title_count.png
+│   ├── release_trend_area.png
+│   └── model_performance_rf.png
+│
+├── output/
+│   └── Netflix_Data_Analytics_Report.pdf
+│
+├── tableau/
+│   └── Netflix_Content_Insights.twbx
+│
+├── sql/
+│   └── netflix_insights_queries.sql
+│
+├── README.md
+├── .gitignore
+├── LICENSE
