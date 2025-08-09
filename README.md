@@ -75,11 +75,13 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 
 ## 4. Data Analysis & Modeling Techniques
 
-The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, **seaborn**, and **scikit-learn** to uncover trends and build predictive insights.
+> ✅ The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, **seaborn**, and **scikit-learn** to uncover trends and build predictive insights.
 
 ---
 
 ### 4.1 Exploratory Data Analysis (EDA)
+
+> ✅ This combined approach of exploratory analysis and predictive modeling provided both descriptive insights and forward-looking intelligence into Netflix’s content trends.
 
 - **4.1.1 Univariate Analysis:**
   - Explored the distribution of key variables using `value_counts()` and `countplot()`:
@@ -127,8 +129,6 @@ The cleaned dataset was analyzed and modeled using **pandas**, **matplotlib**, *
 - **4.2.4 Performance Visualization:**
   - Used `seaborn.scatterplot()` to compare predicted vs actual values
   - Evaluated model accuracy based on closeness to the 45-degree diagonal line
-
-> ✅ This combined approach of exploratory analysis and predictive modeling provided both descriptive insights and forward-looking intelligence into Netflix’s content trends.
 
 ---
 ## 5. Python Codes
