@@ -23,7 +23,7 @@ Netflix aims to optimize its global content strategy using insights from histori
 - Understanding production trends by country and year  
 - Detecting gaps and opportunities in catalog composition
 
-**Key Business Questions:**
+### 2.2. Key Business Questions
 
 - What is the most frequent genre on Netflix?
 - What movies had the highest and lowest popularity?
@@ -108,6 +108,8 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 ---
 
 ### 4.2 Model Training & Evaluation (scikit-learn)
+
+> ✅ This approach combined baseline linear regression with a random forest model to balance simplicity and predictive power.
 
 - **4.2.1 Data Splitting:**
   - Split dataset using `train_test_split()` with an 80/20 ratio
@@ -300,8 +302,6 @@ plt.ylabel('Predicted Values (RF)')
 plt.title('Random Forest Predictions vs Actual')
 plt.show()
 ```
-
-> ✅ Tip: Replace `'TargetColumn'` with your actual prediction target, such as `'Minutes'`, `'Rating Score'`, or a derived metric.
 
 ## 6. Tableau Dashboard Design
 
