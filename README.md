@@ -13,6 +13,15 @@ This project analyzes over **9,000+ Netflix titles** using Python and Tableau to
 
 ---
 
+## 📂 Resources
+
+- Python Script: [Netflix Movies Python Script](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/Python_Netflix_Movie_Data_Analytics_Project.ipynb)
+- Tableau Dashboard: [Netflix Movies Dashboard](https://public.tableau.com/app/profile/trung.le6260/viz/NetflixMoviesDataAnalytics/Summary)
+- Dataset Source: [Netflix Movies Dataset](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/mymoviedb.csv)
+- Movies Dataset: [Netflix IMDP Movies Dataset](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/netflix_titles%20(1).csv)
+
+---
+
 ## 2. Business Objectives
 
 ### 2.1. Business Problem
@@ -70,6 +79,10 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 | star       | Lead actor/actress                      | VARCHAR   |
 | country    | Country of origin                       | VARCHAR   |
 | budget     | Budget of the movie                     | VARCHAR   |
+
+[Project Structure](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/data_structure) 
+
+<img width="417" height="811" alt="Screenshot 2025-08-10 155431" src="https://github.com/user-attachments/assets/7dfeff9e-606b-454e-8c6d-5aef50001a90" />
 
 ---
 
@@ -190,7 +203,44 @@ df = df.explode('Genre')
 df['Minutes'] = df['Duration'].str.extract('(\d+)').astype(float)
 ```
 
+- **5.1.6. Most Filmed Year**
+```python
+df['Release_Date'].hist()
+plt.title('Release_Date column distribution')
+plt.show()
+```
+
+<img width="569" height="435" alt="download (4)" src="https://github.com/user-attachments/assets/da44e17a-8109-4bfc-8f0b-9b671a54dc82" />
+
+
+- **5.1.7. Most Frequent Genre**
+```python
+df['Genre'].describe()
+sns.catplot(y='Genre', data=df, kind='count',
+            order=df['Genre'].value_counts().index,
+            color='#4287f5')
+plt.title('genre column distribution')
+plt.show()
+```
+
+<img width="505" height="512" alt="download (5)" src="https://github.com/user-attachments/assets/d301bdb3-13f4-44c9-a267-5e80877a403f" />
+
+
+- **5.1.8. Genres with Gighest Votes**
+```python
+df['Genre'].describe()
+sns.catplot(y='Genre', data=df, kind='count',
+            order=df['Genre'].value_counts().index,
+            color='#4287f5')
+plt.title('genre column distribution')
+plt.show()
+```
+
+<img width="506" height="512" alt="download (6)" src="https://github.com/user-attachments/assets/6c3c363f-3d76-4094-b68c-ffd047d1b491" />
+
+
 ---
+
 
 ### 5.2 Modeling
 
