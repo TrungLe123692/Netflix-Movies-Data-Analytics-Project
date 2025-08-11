@@ -82,7 +82,40 @@ The project combines two datasets with a total of **12+ columns** and **8,800+ r
 
 [Project Structure](https://github.com/TrungLe123692/Netflix-Movies-Data-Analytics-Project/blob/main/data_structure) 
 
-<img width="417" height="811" alt="Screenshot 2025-08-10 155431" src="https://github.com/user-attachments/assets/7dfeff9e-606b-454e-8c6d-5aef50001a90" />
+```
+netflix-data-analytics/
+│
+├── data/
+│   ├── netflix_titles.csv
+│   └── netflix_movies_imdb.csv
+│
+├── notebooks/
+│   └── Netflix_Data_Analytics.ipynb
+│
+├── scripts/
+│   └── data_cleaning_and_modeling.py
+│
+├── visuals/
+│   ├── genre_popularity.png
+│   ├── rating_distribution.png
+│   ├── content_type_donut.png
+│   ├── country_title_count.png
+│   ├── release_trend_area.png
+│   └── model_performance_rf.png
+│
+├── output/
+│   └── Netflix_Data_Analytics_Report.pdf
+│
+├── tableau/
+│   └── Netflix_Content_Insights.twbx
+│
+├── sql/
+│   └── netflix_insights_queries.sql
+│
+├── README.md
+├── LICENSE
+└── .gitignore
+```
 
 ---
 
