@@ -406,10 +406,3 @@ plt.show()
 - **Interactive Filters:**  
   Includes dynamic filters for content type, country, and title.
 
----
-
-## 📂 Resources
-
-- Python Notebook: [Python_Netflix_Movie_Data_Analytics_Project.ipynb](./Python_Netflix_Movie_Data_Analytics_Project.ipynb)  
-- Tableau Dashboard: [Tableau Public Link](https://public.tableau.com/app/profile/trung.le6260/viz/NetflixMoviesDataAnalytics/Summary)
-- Dataset Source: [Kaggle Netflix Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows)
